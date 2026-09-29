@@ -50,7 +50,7 @@ const loadNotifications = require("./middlewares/loadNotifications");
 const getNotificationStyle = require('./helper/notification-style.js')
 
 // Server port
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 // MongoDB URL
 const DB_URL = process.env.DB_URL;
@@ -96,29 +96,16 @@ store.on("error", (error) => {
 // ================= SESSION CONFIG =================
 
 const sessionOptions = {
-
-    secret: "mysecretkey",
-
-    // Avoid saving unchanged session
+    store,
+    secret: process.env.SECRET_CODE,
     resave: false,
-
-    // Don't save empty session
     saveUninitialized: false,
-
     cookie: {
-        // Cookie expiry
-        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
-
-        // Cookie max age = 7 days
         maxAge: 7 * 24 * 60 * 60 * 1000,
-
-        // Security
-        httpOnly: true
+        httpOnly: true,
+        sameSite: 'lax'
     }
 };
-
-// Notification Middleware
-app.use(loadNotifications);
 
 app.use((req, res, next) => {
 
@@ -175,6 +162,9 @@ passport.serializeUser(User.serializeUser());
 
 // Get user from session
 passport.deserializeUser(User.deserializeUser());
+
+// Notification Middleware
+app.use(loadNotifications);
 
 // ================= GLOBAL VARIABLES =================
 
