@@ -69,8 +69,19 @@ main()
         console.log("MongoDB Connection Successful!");
     })
     .catch((err) => {
-        console.log(err);
-    });
+    console.error("MongoDB error:", err.message);
+
+    const servers = err.reason?.servers;
+
+    if (servers) {
+        for (const [host, server] of servers) {
+            console.error(
+                "Server:", host,
+                "Reason:", server.error?.message || "No details"
+            );
+        }
+    }
+});
 
 
 // ================= SESSION STORE =================
