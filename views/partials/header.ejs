@@ -1,0 +1,48 @@
+
+
+  <main class="page-wrapper compact-wrapper" id="pageWrapper">
+    <!-- Page header start -->
+    <header class="page-header row">
+      <div class="logo-wrapper d-flex align-items-center col-auto"><a href="/"><img class="for-light"
+            src="/adminassets/images/lead_logo.png" alt="logo"><img class="for-dark"
+            src="/adminassets/images/lead_logo-w.png" alt="logo"></a><a class="close-btn" href="javascript:void(0)">
+          <div class="toggle-sidebar">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+        </a></div>
+      <div class="page-main-header col">
+        <div class="nav-right">
+          <ul class="header-right">
+            <li class="modes d-flex"><a class="dark-mode">
+                <i class="fa-regular fa-moon"></i></a></li>
+            <li class="serchinput d-lg-none d-flex"><a class="search-mode">
+                <i class="fa-solid fa-magnifying-glass"></i></a>
+              <div class="form-group search-form">
+                <input type="text" placeholder="Search here...">
+              </div>
+            </li>
+            <!-- Notification menu-->
+            <%- include('notification.ejs') %>
+            <li class="profile-dropdown custom-dropdown">
+              <div class="d-flex align-items-center"><img src="/adminassets/images/profile.png" alt="">
+                <div class="flex-grow-1">
+                  <h5>Azeem Sarwar</h5><span>Admin</span>
+                </div>
+              </div>
+              <div class="custom-menu overflow-hidden">
+                <ul>
+                  <li class="d-flex">
+                    <i class="fa-solid fa-lock"></i><a class="ms-2" href="/changepassword">Change Password</a>
+                  </li>
+                  <li class="d-flex">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i><a class="ms-2" href="/logout">Log Out</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>

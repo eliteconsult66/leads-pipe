@@ -1,0 +1,219 @@
+<%- include("../partials/boilerplate.ejs") %>
+
+    <%- include("../partials/header.ejs") %>
+
+        <!-- Page header end-->
+        <div class="page-body-wrapper">
+            <!-- Page sidebar start-->
+            <%- include("../partials/sidebar.ejs") %>
+                <!-- Page sidebar end-->
+                <div class="page-body">
+                    <div class="container-fluid">
+                        <div class="row page-title">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3>
+
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Container-fluid starts-->
+                    <%- include("../partials/flash.ejs") %>
+                        <%- include("../partials/model.ejs") %>
+                            <div class="container-fluid edit-profile">
+                                <div class="enq-det mb-5">
+
+                                    <h3>Enquiry Detail</h3>
+
+                                    <div class="row">
+                                        <!-- Enquiry ID -->
+                                        <div class="col-xl-6 col-lg-6 col-md-12">
+                                            <div class="showEnquiry">
+
+                                                <p>Enquiry ID</p>
+
+                                                <h6>
+                                                    <%= showEnquiry._id %>
+                                                </h6>
+
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Landing Page ID -->
+                                        <div class="col-xl-6 col-lg-6 col-md-12">
+                                            <div class="showEnquiry">
+
+                                                <p>Landing Page ID</p>
+
+                                                <h6>
+                                                    <%= showEnquiry.landingPageId %>
+                                                </h6>
+
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Node Form ID -->
+                                        <div class="col-xl-6 col-lg-6 col-md-12">
+                                            <div class="showEnquiry">
+
+                                                <p>Form ID</p>
+
+                                                <h6>
+                                                    <%= showEnquiry.formId %>
+                                                </h6>
+
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Fluent Form ID -->
+                                        <div class="col-xl-6 col-lg-6 col-md-12">
+                                            <div class="showEnquiry">
+
+                                                <p>Fluent Form ID</p>
+
+                                                <h6>
+                                                    <%= showEnquiry.fluentFormId %>
+                                                </h6>
+
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Submission ID -->
+                                        <div class="col-xl-6 col-lg-6 col-md-12">
+                                            <div class="showEnquiry">
+
+                                                <p>Submission ID</p>
+
+                                                <h6>
+                                                    <%= showEnquiry.fluentSubmissionId %>
+                                                </h6>
+
+                                            </div>
+                                        </div>
+
+                                        <% const formData=showEnquiry.formData || {}; const shouldHideField=(key)=> {
+
+                                            const normalizedKey = key
+                                            .toLowerCase()
+                                            .replace(/[\s_-]/g, '');
+
+                                            // Cloudflare Turnstile
+                                            if (
+                                            normalizedKey.includes('turnstile') ||
+                                            normalizedKey.includes('cfturnstileresponse')
+                                            ) {
+                                            return true;
+                                            }
+
+
+                                            // Fluent Forms nonce
+                                            if (
+                                            normalizedKey.includes('fluentformnonce') ||
+                                            normalizedKey.includes('nonce')
+                                            ) {
+                                            return true;
+                                            }
+
+
+                                            // Fluent Forms embedded post ID
+                                            if (
+                                            normalizedKey.includes('fluentformembdedpostid') ||
+                                            normalizedKey.includes('fluentformembeddedpostid')
+                                            ) {
+                                            return true;
+                                            }
+
+
+                                            // WordPress HTTP Referrer
+                                            if (
+                                            normalizedKey.includes('wphttpreferer') ||
+                                            normalizedKey.includes('httpreferer')
+                                            ) {
+                                            return true;
+                                            }
+
+
+                                            return false;
+                                            };
+                                            %>
+
+
+                                            <% Object.entries(formData).forEach(([key, value])=> { %>
+
+
+                                                <% if (!shouldHideField(key)) { %>
+
+
+                                                    <div class="col-xl-6 col-lg-6 col-md-12">
+
+                                                        <div class="showEnquiry">
+
+
+                                                            <!-- Dynamic Field Label -->
+                                                            <p>
+
+                                                                <%= key .replace(/^_+/, '' ) .replace(/_/g, ' ' )
+                                                                    .replace(/-/g, ' ' ) .replace(/\b\w/g, char=>
+                                                                    char.toUpperCase())
+                                                                    %>
+
+                                                            </p>
+
+
+                                                            <!-- Dynamic Field Value -->
+                                                            <h6>
+
+
+                                                                <% if (Array.isArray(value)) { %>
+
+
+                                                                    <%= value.length ? value.join(', ')
+                                    : ' -' %>
+
+
+                                                                        <% } else if ( value !==null && value
+                                                                            !==undefined && typeof value==='object' ) {
+                                                                            %>
+
+
+                                                                            <%= Object.values(value) .filter(Boolean)
+                                                                                .join(' ') || ' -' %>
+
+
+                                                                                <% } else { %>
+
+
+                                                                                    <%= value !==null && value
+                                                                                        !==undefined && value !=='' ?
+                                                                                        value : '-' %>
+
+
+                                                                                        <% } %>
+
+
+                                                            </h6>
+
+
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <% } %>
+
+
+                                                        <% }) %>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                </div>
+
+                <%- include("../partials/footer.ejs") %>

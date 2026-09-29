@@ -1,0 +1,106 @@
+<%- include("../../partials/boilerplate.ejs") %>
+
+    <%- include("../../partials/header.ejs") %>
+
+        <!-- Page header end-->
+        <div class="page-body-wrapper">
+            <!-- Page sidebar start-->
+            <%- include("../../partials/sidebar.ejs") %>
+                <!-- Page sidebar end-->
+                <div class="page-body">
+                    <div class="container-fluid">
+                        <div class="row page-title">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3>All Employees</h3>
+                                    <a href="/employee/add" class="btn m-1 btn-primary">Add New Employee</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Container-fluid starts-->
+                    <%- include("../../partials/flash.ejs") %>
+                        <%- include("../../partials/model.ejs") %>
+                            <div class="container-fluid edit-profile">
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="card-body rolecard-body">
+                                            <div class="table-responsive">
+                                                <table class="display" id="basic-1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Name</th>
+                                                            <th>Role</th>
+                                                            <th>Status</th>
+                                                            <th>Created At</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% if (employees.length===0) { %>
+                                                            <% } else { %>
+                                                                <% employees.forEach((employee, index)=> { %>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <%= index + 1 %>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= employee.name %>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= employee.role.name %>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="flip-btn-wrap">
+                                                                                <button
+                                                                                    class="btn btn-sm status-btn <%= employee.status === 'Active' ? '' : 'flipped' %>"
+                                                                                    data-url="/employee/<%= employee._id %>/toggle-status">
+                                                                                    <span
+                                                                                        class="flip-front">Active</span>
+                                                                                    <span
+                                                                                        class="flip-back">Inactive</span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= employee.createdAt ? new
+                                                                                Date(employee.createdAt).toLocaleDateString()
+                                                                                : 'N/A' %>
+                                                                        </td>
+                                                                        <td>
+                                                                            <ul class="action">
+                                                                                <li class="edit"> <a title="Edit"
+                                                                                        href="/employee/<%= employee._id %>/edit"><i
+                                                                                            class="fa-regular fa-pen-to-square"></i></a>
+                                                                                </li>
+                                                                                <li class="delete">
+                                                                                    <button type="button"
+                                                                                        data-url="/employee/<%= employee._id %>?_method=DELETE"
+                                                                                        class="delete-btn"
+                                                                                        data-id="<%= employee._id %>"
+                                                                                        data-name="<%= employee.name %>"
+                                                                                        data-bs-toggle="modal"
+                                                                                        data-bs-target="#deleteModel">
+                                                                                        <i
+                                                                                            class="fa-solid fa-trash"></i>
+                                                                                    </button>
+
+                                                                                </li>
+                                                                            </ul>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <% }) %>
+                                                                        <% } %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Container-fluid ends-->
+                </div>
+
+                <%- include("../../partials/footer.ejs") %>

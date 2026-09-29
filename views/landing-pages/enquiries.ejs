@@ -1,0 +1,279 @@
+<%- include("../partials/boilerplate.ejs") %>
+
+    <%- include("../partials/header.ejs") %>
+
+        <!-- Page header end-->
+        <div class="page-body-wrapper">
+            <!-- Page sidebar start-->
+            <%- include("../partials/sidebar.ejs") %>
+                <!-- Page sidebar end-->
+                <div class="page-body">
+                    <div class="container-fluid">
+                        <div class="row page-title">
+                            <div class="col-12">
+                                <div
+                                    style="background: #43b9b221; padding: 15px 10px; border-radius: 10px; border: 1px solid #43B9B2; text-align: center;">
+                                    <h3 style="color: #43B9B2;">
+                                        <%= form.name %> Enquiries
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Container-fluid starts-->
+                    <%- include("../partials/flash.ejs") %>
+                        <%- include("../partials/model.ejs") %>
+                            <div class="container-fluid edit-profile">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="exp-btns-main">
+                                            <div class="row align-items-end">
+                                                <div class="col-xl-4 col-lg-12 col-md-12">
+                                                    <div class="dropdown">
+
+                                                        <button class="btn btn-primary dropdown-toggle " type="button"
+                                                            data-bs-toggle="dropdown">
+                                                            Export Enquiries
+                                                        </button>
+
+
+                                                        <ul class="dropdown-menu">
+
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    href="/forms/<%= form._id %>/enquiries/export/today">
+                                                                    Today
+                                                                </a>
+                                                            </li>
+
+
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    href="/forms/<%= form._id %>/enquiries/export/3-days">
+                                                                    Last 3 Days
+                                                                </a>
+                                                            </li>
+
+
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    href="/forms/<%= form._id %>/enquiries/export/7-days">
+                                                                    Last 7 Days
+                                                                </a>
+                                                            </li>
+
+
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    href="/forms/<%= form._id %>/enquiries/export/30-days">
+                                                                    Last 30 Days
+                                                                </a>
+                                                            </li>
+
+
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    href="/forms/<%= form._id %>/enquiries/export/3-months">
+                                                                    Last 3 Months
+                                                                </a>
+                                                            </li>
+
+
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    href="/forms/<%= form._id %>/enquiries/export/6-months">
+                                                                    Last 6 Months
+                                                                </a>
+                                                            </li>
+
+
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    href="/forms/<%= form._id %>/enquiries/export/1-year">
+                                                                    Last 1 Year
+                                                                </a>
+                                                            </li>
+
+                                                        </ul>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-8 col-lg-12 col-md-12">
+                                                    <form method="GET"
+                                                        action="/forms/<%= form._id %>/enquiries/export/custom"
+                                                        class="row g-2 align-items-end">
+
+                                                        <div class="col-xl-5 col-lg-6 col-md-12">
+
+                                                            <label class="form-label">
+                                                                From Date
+                                                            </label>
+
+                                                            <input type="date" name="from" class="form-control"
+                                                                required>
+
+                                                        </div>
+
+
+                                                        <div class="col-xl-5 col-lg-6 col-md-12">
+
+                                                            <label class="form-label">
+                                                                To Date
+                                                            </label>
+
+                                                            <input type="date" name="to" class="form-control" required>
+
+                                                        </div>
+
+
+                                                        <div class="col-xl-2 col-lg-12 col-md-12">
+
+                                                            <button type="submit" class="btn btn-primary">
+                                                                Export
+                                                            </button>
+
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h4 style="color: #3D3D47; font-size: 14px; margin-bottom: 20px;">Export
+                                                Enquiries</h4>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="card-body rolecard-body">
+                                        <div class="table-responsive">
+
+                                            <table class="display" id="basic-1">
+
+                                                <thead>
+
+                                                    <tr>
+
+                                                        <th>#</th>
+
+                                                        <% displayFields.forEach(key=> { %>
+
+                                                            <th>
+                                                                <%= key .replace(/_/g, ' ' ) .replace(/-/g, ' ' )
+                                                                    .replace(/\b\w/g, char=> char.toUpperCase())
+                                                                    %>
+                                                            </th>
+
+                                                            <% }) %>
+
+                                                                <th>Date</th>
+
+                                                                <th>Action</th>
+
+                                                    </tr>
+
+                                                </thead>
+
+
+                                                <tbody>
+
+                                                    <% if (!enquiries || enquiries.length===0) { %>
+
+                                                        <tr>
+
+                                                            <td colspan="<%= displayFields.length + 3 %>"
+                                                                class="text-center">
+                                                                No enquiries found.
+                                                            </td>
+
+                                                        </tr>
+
+                                                        <% } else { %>
+
+
+                                                            <% enquiries.forEach((enquiry, index)=> { %>
+
+                                                                <tr>
+
+                                                                    <td>
+                                                                        <%= index + 1 %>
+                                                                    </td>
+
+
+                                                                    <% displayFields.forEach(key=> { %>
+
+                                                                        <td>
+
+                                                                            <% const value=enquiry.formData ?
+                                                                                enquiry.formData[key] : null; %>
+
+
+                                                                                <% if (Array.isArray(value)) { %>
+
+                                                                                    <%= value.join(', ') || ' -' %>
+
+                                                                                        <% } else if ( value && typeof
+                                                                                            value==='object' ) { %>
+
+                                                                                            <%= Object.values(value)
+                                                                                                .filter(Boolean)
+                                                                                                .join(' ') || ' -' %>
+
+                                                                                                <% } else { %>
+
+                                                                                                    <%= value || '-' %>
+
+                                                                                                        <% } %>
+
+                                                                        </td>
+
+                                                                        <% }) %>
+
+
+                                                                            <td>
+
+                                                                                <%= new Date( enquiry.createdAt
+                                                                                    ).toLocaleDateString() %>
+
+                                                                            </td>
+
+
+                                                                            <td>
+
+                                                                                <ul class="action">
+
+                                                                                    <li class="view">
+
+                                                                                        <a title="View"
+                                                                                            href="/landing-pages/forms/<%= form._id %>/enquiries/<%= enquiry._id %>/showEnq">
+
+                                                                                            <i
+                                                                                                class="fa-regular fa-eye"></i>
+
+                                                                                        </a>
+
+                                                                                    </li>
+
+                                                                                </ul>
+
+                                                                            </td>
+
+                                                                </tr>
+
+                                                                <% }) %>
+
+                                                                    <% } %>
+
+                                                </tbody>
+
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+        </div>
+
+        <%- include("../partials/footer.ejs") %>

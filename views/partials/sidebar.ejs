@@ -1,0 +1,131 @@
+<div class="overlay"></div>
+<aside class="page-sidebar" data-sidebar-layout="stroke-svg">
+  <div class="left-arrow" id="left-arrow">
+    
+  </div>
+  <div id="sidebar-menu">
+    <ul class="sidebar-menu" id="simple-bar">
+      <li class="sidebar-list">
+        <a class="sidebar-link" href="/dashboard">
+          <i class="fa-regular fa-house"></i><span>Dashboard</span>
+        </a>
+      </li>
+      <% if (currentUser?.isMasterAdmin || permissions.includes('setting')) { %>
+        <li class="sidebar-list">
+          <a class="sidebar-link" href="/setting">
+            <i class="fa-solid fa-gear"></i><span>Setting</span>
+          </a>
+        </li>
+        <% } %>
+          <% if (currentUser?.isMasterAdmin || permissions.includes('landing-pages')) { %>
+            <li class="sidebar-list">
+              <a class="sidebar-link" href="/landing-pages">
+                <i class="fa-regular fa-file"></i><span>Landing Pages</span>
+              </a>
+            </li>
+            <% } %>
+              <% if (currentUser?.isMasterAdmin || permissions.includes('forms')) { %>
+                <li class="sidebar-list">
+                  <a class="sidebar-link" href="/forms">
+                    <i class="fa-regular fa-file-lines"></i><span>Forms</span>
+                  </a>
+                </li>
+                <% } %>
+                  </li>
+                  <% if (currentUser?.isMasterAdmin || permissions.includes('notifications')) { %>
+                    <li class="sidebar-list">
+                      <a class="sidebar-link" href="/notifications">
+                        <i class="fa-solid fa-bell"></i><span>Notifications</span> <span
+                          class="badge rounded-pill badge-secondary" style="color: #fff;">
+                          <%= unreadCount %>
+                        </span>
+                      </a>
+                    </li>
+                    <% } %>
+                      <% if (currentUser?.isMasterAdmin || permissions.includes('admin-role')) { %>
+                        <li class="sidebar-list">
+                          <a class="sidebar-link" href="javascript:void(0)">
+                            <i class="fa-solid fa-user"></i><span>Admin Role</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                          </a>
+                          <ul class="sidebar-submenu">
+                            <li><a href="/role">
+                                Role</a></li>
+                            <li><a href="/employee">
+                                Employee</a></li>
+                          </ul>
+                        </li>
+                        <% } %>
+                          <% if ( currentUser?.isMasterAdmin || permissions.includes('landing-pages') ||
+                            landingPages.length> 0
+                            ) { %>
+
+                            <p class="landingPage" style="font-weight: 700;">
+                              Landing Pages
+                            </p>
+
+
+                            <% landingPages.forEach(page=> { %>
+
+                              <li class="sidebar-list">
+
+                                <a class="sidebar-link" href="javascript:void(0)">
+
+                                  <i class="fa-solid fa-envelope"></i>
+
+                                  <span>
+                                    <%= page.name %>
+                                  </span>
+
+                                  <i class="fa-solid fa-chevron-down"></i>
+
+                                </a>
+
+                                <ul class="sidebar-submenu">
+
+                                  <% if (page.forms && page.forms.length> 0) { %>
+
+
+                                    <% page.forms.forEach(form=> { %>
+
+                                      <li>
+
+                                        <a href="/forms/<%= form._id %>/enquiries">
+
+                                          <%= form.name %>
+
+                                        </a>
+
+                                      </li>
+
+                                      <% }) %>
+
+
+                                        <% } else { %>
+
+                                          <li>
+
+                                            <span class="text-muted">
+                                              No Forms
+                                            </span>
+
+                                          </li>
+
+                                          <% } %>
+
+                                </ul>
+
+                              </li>
+
+                              <% }) %>
+
+                                <% } %>
+    </ul>
+  </div>
+  <div class="right-arrow" id="right-arrow">
+    <svg class="feather">
+      <use href="https://admin.pixelstrap.net/edmin/assets/svg/feather-icons/dist/feather-sprite.svg#arrow-right">
+      </use>
+    </svg>
+  </div>
+</aside>

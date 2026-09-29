@@ -1,0 +1,45 @@
+<%-include("../partials/boilerplate.ejs")%>
+  <!-- login page start-->
+  <div class="container-fluid">
+    <%- include("../partials/flash.ejs")  %>
+    <div class="row">
+      <div class="col-xl-7 login_one_image"><img class="bg-img-cover bg-center" src="/adminassets/images/login/2.jpg"
+          alt="looginpage"></div>
+      <div class="col-xl-5 p-0">
+        <div class="login-card login-dark login-bg">
+          <div>
+            <div><a class="logo" href="#"><img class="img-fluid for-light" src="/adminassets/images/lead_logo.png"
+                  alt="looginpage"><img class="for-dark m-auto" src="/adminassets/images/logo/dark-logo.png"
+                  alt="logo"></a></div>
+            <div class="login-main">
+              <form class="theme-form" method="POST" action="/login">
+                <h2 class="text-center">Sign in to account</h2>
+                <p class="text-center">Enter your email &amp; password to login</p>
+                <div class="form-group">
+                  <label class="col-form-label">Email Address</label>
+                  <input class="form-control" type="text" required="" name="username" placeholder="Enter Email">
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label">Password</label>
+                  <div class="form-input position-relative">
+                    <input class="form-control" type="password" name="password" required="" placeholder="*********">
+                    <div class="show-hide"><span class="show"> </span></div>
+                  </div>
+                </div>
+                <div class="form-group mb-0 checkbox-checked">
+                  <div class="form-check checkbox-solid-info">
+                    <input class="form-check-input" id="solid6" type="checkbox">
+                    <label class="form-check-label" for="solid6">Remember password </label>
+                  </div>
+                  <div class="text-end mt-3"><button type="submit" class="btn btn-primary btn-block w-100 text-white"
+                      href="index.html">Sign in </button></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+<%-include("../partials/footer.ejs")%>

@@ -1,0 +1,27 @@
+<li class="custom-dropdown"><a href="javascript:void(0)">
+        <i class="fa-regular fa-bell"></i></a><span class="badge rounded-pill badge-secondary">
+        <%= unreadCount %>
+    </span>
+    <div class="custom-menu notification-dropdown py-0 overflow-hidden">
+        <h5 class="title bg-primary-light">Notifications <a href="/notifications"><span class="font-primary">View
+                    All</span></a></h5>
+        <ul class="activity-update">
+            <% notifications.forEach(notification=> { %>
+                <% const style=getNotificationStyle(notification.type); %>
+                    <li class="d-flex align-items-center b-l-<%= style.color %>">
+                        <div class="flex-grow-1"> <span>
+                                <%= notification.createdAt.toLocaleString() %>
+                            </span><a href="/admin/notifications/<%= notification._id %>/view">
+                                <h5>
+                                    <%= notification.message %>
+                                </h5>
+                            </a>
+                            <h6>
+                                <%= notification.title %>
+                            </h6>
+                        </div>
+                    </li>
+                    <% }) %>
+        </ul>
+    </div>
+</li>

@@ -1,0 +1,79 @@
+<%- include("../partials/boilerplate.ejs") %>
+
+    <%- include("../partials/header.ejs") %>
+
+        <!-- Page header end-->
+        <div class="page-body-wrapper">
+            <!-- Page sidebar start-->
+            <%- include("../partials/sidebar.ejs") %>
+                <div class="page-body">
+                    <div class="container-fluid">
+                        <div class="row page-title">
+                            <div class="col-sm-12">
+                                <h3>Read Complete Enquiry
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid edit-profile">
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Full Name</label>
+                                        <input class="form-control" readonly name="fullname"
+                                            value="" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        <input class="form-control" name="email" readonly
+                                            value="" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Phone Number</label>
+                                        <input class="form-control" name="phone" readonly
+                                            value="" type="tel">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Subject</label>
+                                        <input class="form-control" name="email" readonly
+                                            value="" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Service</label>
+                                        <input class="form-control" name="service" readonly
+                                            value="" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Message</label>
+                                        <textarea class="form-control" readonly name="message"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Enquiry Submitted At</label>
+                                        <input class="form-control" readonly value="" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-end">
+                            <a href="/admin/blog/blog-comments/" class="btn btn-primary">Back</a>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+        </div>
+        </div>
+
+        <%- include("../partials/footer.ejs") %>

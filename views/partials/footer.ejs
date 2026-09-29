@@ -1,0 +1,61 @@
+<footer class="footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 footer-copyright">
+        <p class="mb-0">Copyright 2026 © Lead Pipe. Design & Developed By Asim Saeed.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+</div>
+</main>
+<!-- jquery-->
+<script src="/adminassets/js/vendors/jquery/dist/jquery.min.js"></script>
+
+<!-- bootstrap js-->
+<script src="/adminassets/js/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/adminassets/js/config.js"></script>
+<!-- Sidebar js-->
+<script src="/adminassets/js/sidebar.js"></script>
+<!-- Datatable js-->
+<script src="/adminassets/js/vendors/simple-datatables/dist/umd/simple-datatables.js"></script>
+<script src="/adminassets/js/datatable/datatables/jquery.dataTables.min.js"></script>
+<script src="/adminassets/js/datatable/datatables/datatable.custom.js"></script>
+<!-- default dashboard js-->
+<!-- <script src="/adminassets/js/dashboard/default.js"></script> -->
+<!-- scrollbar js-->
+<script src="/adminassets/js/scrollbar/simplebar.js"></script>
+<script src="/adminassets/js/scrollbar/custom.js"></script>
+<% if(typeof pageScript !=='undefined' && pageScript==='forms' ){ %>
+  <script>
+    console.log("forms");
+    
+    document.addEventListener('DOMContentLoaded', function () {
+      const formName = document.getElementById('formName');
+      const formSlug = document.getElementById('formSlug');
+
+      formName.addEventListener('input', function () {
+        const slugValue = this.value
+          .toLowerCase()
+          .trim()
+          .replace(/[^a-z0-9\s-]/g, '')
+          .replace(/\s+/g, '-');
+
+        formSlug.value = slugValue;
+      });
+    });
+  </script>
+  <% } %>
+
+    <!-- scrollable-->
+    <script src="/adminassets/js/password.js"></script>
+    <!-- customizer-->
+    <!-- custom script -->
+    <script src="/adminassets/js/script.js"></script>
+    <!-- custom Status js -->
+    <script src="/adminassets/js/statusCommon.js"></script>
+    <script src="/adminassets/js/featuredCommon.js"></script>
+    </body>
+
+
+    </html>

@@ -1,0 +1,85 @@
+<%- include("partials/boilerplate.ejs") %>
+
+  <%- include("partials/header.ejs") %>
+
+    <!-- Page header end-->
+    <div class="page-body-wrapper">
+      <!-- Page sidebar start-->
+      <%- include("partials/sidebar.ejs") %>
+        <!-- Page sidebar end-->
+        <div class="page-body">
+          <%- include("partials/flash.ejs") %>
+            <div class="container-fluid">
+              <div class="row page-title">
+                <div class="col-sm-6">
+                  <h3>Lead Pipe Dashboard</h3>
+                </div>
+              </div>
+            </div>
+            <div class="container-fluid default-dashboard">
+              <div class="row">
+                <div class="col-sm-6 col-xl-3">
+                  <div class="card social-profile">
+                    <div class="card-body">
+                      <div class="social-img-wrap2">
+                        <div class="social-img">
+                          <i class="fa-solid fa-gear"></i>
+                          <h4 class="mb-1">Settings</h4>
+                        </div>
+                        <div class="social-details">
+                          <a href="/setting" class="btn m-1 btn-primary">Settings</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                  <div class="card social-profile">
+                    <div class="card-body">
+                      <div class="social-img-wrap2">
+                        <div class="social-img">
+                          <i class="fa-regular fa-file"></i>
+                          <h4 class="mb-1">Forms</h4>
+                        </div>
+                        <div class="social-details">
+                          <a href="/forms" class="btn m-1 btn-primary">Forms</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                  <div class="card social-profile">
+                    <div class="card-body">
+                      <div class="social-img-wrap2">
+                        <div class="social-img">
+                          <i class="fa-regular fa-file"></i>
+                          <h4 class="mb-1">Landing Pages</h4>
+                        </div>
+                        <div class="social-details">
+                          <a href="/landing-pages" class="btn m-1 btn-primary">Landing Pages</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                  <div class="card social-profile">
+                    <div class="card-body">
+                      <div class="social-img-wrap2">
+                        <div class="social-img">
+                          <i class="fa-solid fa-lock"></i>
+                          <h4 class="mb-1">Logout</h4>
+                        </div>
+                        <div class="social-details">
+                          <a href="/logout" class="btn m-1 btn-primary">Logout</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <%- include("partials/footer.ejs") %>

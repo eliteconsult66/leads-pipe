@@ -1,0 +1,217 @@
+<%- include("../../partials/boilerplate.ejs") %>
+
+    <%- include("../../partials/header.ejs") %>
+
+        <!-- Page header end-->
+        <div class="page-body-wrapper">
+            <!-- Page sidebar start-->
+            <%- include("../../partials/sidebar.ejs") %>
+                <!-- Page sidebar end-->
+                <div class="page-body">
+                    <div class="container-fluid">
+                        <div class="row page-title">
+                            <div class="col-sm-12">
+                                <h3>Edit Role</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Container-fluid starts-->
+                    <div class="container-fluid edit-profile">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <form class="card" method="POST" action="/role/<%= role._id %>/edit?_method=PUT">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Role Name</label>
+                                                    <input class="form-control" value="<%= role.name %>" name="name"
+                                                        type="text">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Select Status</label>
+                                                    <select name="status" class="form-control">
+                                                        <option value="true" <%=role.status ? 'selected' : '' %>>Active
+                                                        </option>
+                                                        <option value="false" <%=!role.status ? 'selected' : '' %>
+                                                            >Inactive</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <h5 class="mb-2">Modules Permision</h5>
+                                                    <div class="row">
+                                                        <% sections.forEach(section=> { %>
+
+                                                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                                                                <div class="d-flex align-items-center mb-2">
+
+                                                                    <input type="checkbox" name="permissions"
+                                                                        value="<%= section.slug %>"
+                                                                        class="perm-checkbox"
+                                                                        <%=role.permissions.includes(section.slug)
+                                                                        ? 'checked' : '' %>
+                                                                    >
+
+                                                                    <span class="mx-2">
+                                                                        <%= section.name %>
+                                                                    </span>
+
+                                                                </div>
+                                                            </div>
+
+                                                            <% }) %>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12">
+
+                                                <h5 class="mb-3">
+                                                    Landing Page & Form Permissions
+                                                </h5>
+
+                                                <div class="row">
+
+                                                    <% landingPages.forEach((page, index)=> { %>
+
+                                                        <% const access=(role.landingPageAccess || []).find(item=>
+                                                            item.landingPage.toString() === page._id.toString()
+                                                            );
+
+                                                            const landingPageSelected = !!access;
+
+                                                            const allFormsSelected =
+                                                            access && access.allForms === true;
+                                                            %>
+
+
+                                                            <div class="col-lg-6 mb-3">
+
+                                                                <div class="card">
+
+                                                                    <div class="card-body">
+
+
+                                                                        <!-- Landing Page ID -->
+                                                                        <input type="hidden"
+                                                                            name="landingPageAccess[<%= index %>][landingPage]"
+                                                                            value="<%= page._id %>">
+
+
+                                                                        <!-- Landing Page -->
+                                                                        <div class="d-flex align-items-center mb-3">
+
+                                                                            <input type="checkbox"
+                                                                                name="landingPageAccess[<%= index %>][enabled]"
+                                                                                value="true" class="perm-checkbox"
+                                                                                <%=landingPageSelected ? 'checked' : ''
+                                                                                %>
+                                                                            >
+
+                                                                            <strong class="mx-2">
+                                                                                <%= page.name %>
+                                                                            </strong>
+
+                                                                        </div>
+
+
+                                                                        <% if (page.forms && page.forms.length> 0) { %>
+
+
+                                                                            <!-- All Forms -->
+                                                                            <div
+                                                                                class="d-flex align-items-center mb-2 ms-4">
+
+                                                                                <input type="checkbox"
+                                                                                    name="landingPageAccess[<%= index %>][allForms]"
+                                                                                    value="true" class="perm-checkbox"
+                                                                                    <%=allFormsSelected ? 'checked' : ''
+                                                                                    %>
+                                                                                >
+
+                                                                                <span class="mx-2">
+                                                                                    All Forms
+                                                                                </span>
+
+                                                                            </div>
+
+
+                                                                            <!-- Individual Forms -->
+                                                                            <% page.forms.forEach((form)=> { %>
+
+                                                                                <% let formSelected=false; if ( access
+                                                                                    && !access.allForms && access.forms
+                                                                                    ) { formSelected=access.forms.some(
+                                                                                    formId=>
+                                                                                    formId.toString() ===
+                                                                                    form._id.toString()
+                                                                                    );
+
+                                                                                    }
+                                                                                    %>
+
+
+                                                                                    <div
+                                                                                        class="d-flex align-items-center mb-2 ms-4">
+
+                                                                                        <input type="checkbox"
+                                                                                            name="landingPageAccess[<%= index %>][forms][]"
+                                                                                            value="<%= form._id %>"
+                                                                                            class="perm-checkbox"
+                                                                                            <%=formSelected ? 'checked'
+                                                                                            : '' %>
+                                                                                        >
+
+                                                                                        <span class="mx-2">
+                                                                                            <%= form.name %>
+                                                                                        </span>
+
+                                                                                    </div>
+
+                                                                                    <% }) %>
+
+
+                                                                                        <% } else { %>
+
+                                                                                            <div class="ms-4">
+
+                                                                                                <small
+                                                                                                    class="text-muted">
+                                                                                                    No forms available
+                                                                                                </small>
+
+                                                                                            </div>
+
+                                                                                            <% } %>
+
+
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                            <% }) %>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer text-end">
+                                        <button class="btn btn-primary" type="submit">Update Role</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Container-fluid ends-->
+                </div>
+
+                <%- include("../../partials/footer.ejs") %>

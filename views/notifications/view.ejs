@@ -1,0 +1,136 @@
+<%- include("../partials/boilerplate.ejs") %>
+
+    <%- include("../partials/header.ejs") %>
+
+        <!-- Page header end-->
+        <div class="page-body-wrapper">
+            <!-- Page sidebar start-->
+            <%- include("../partials/sidebar.ejs") %>
+                <!-- Page sidebar end-->
+                <div class="page-body">
+                    <div class="container-fluid">
+                        <div class="row page-title">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3>All Notofications</h3>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Container-fluid starts-->
+                    <%- include("../partials/flash.ejs") %>
+                        <%- include("../partials/model.ejs") %>
+                            <div class="container-fluid edit-profile">
+                                <div class="row">
+                                    <div class="col-xl-12">
+
+                                        <div class="notification">
+
+                                            <% if (allNotifications.length===0) { %>
+
+                                                <p>No Notification Found.</p>
+
+                                                <% } else { %>
+
+                                                    <% allNotifications.forEach((notification)=> { %>
+
+                                                        <% const style=getNotificationStyle(notification.type); //
+                                                            // Current user ki notification Read hai ya Unread? 
+                                                            const isRead=(notification.readBy || []).some( userId=>
+                                                            userId.toString() ===
+                                                            currentUser._id.toString()
+                                                            );
+                                                            %>
+
+                                                            <div class="notify-main b-l-<%= style.color %>"
+                                                                style="background-color: <%= style.background %>;">
+
+                                                                <div class="notify-iiner d-flex align-items-center">
+
+                                                                    <div class="notify-icon bg-<%= style.color %>">
+
+                                                                        <i class="<%= style.icon %>"></i>
+
+                                                                    </div>
+
+                                                                    <div class="notify-text">
+
+                                                                        <span class="notify-date">
+
+                                                                            <%= notification.createdAt.toLocaleString()
+                                                                                %>
+
+                                                                        </span>
+
+                                                                        <p class="notify-info">
+
+                                                                            <%= notification.message %>
+
+                                                                        </p>
+
+                                                                        <span>
+
+                                                                            <%= notification.title %>
+
+                                                                        </span>
+
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="notif-action">
+
+                                                                    <button type="button"
+                                                                        class="btn btn-sm status-btn <%= isRead ? 'flipped' : '' %>"
+                                                                        data-url="/notifications/<%= notification._id %>/toggle-read-status">
+
+                                                                        <span class="read flip-front">
+                                                                            Unread
+                                                                        </span>
+
+                                                                        <span class="read flip-back">
+                                                                            Read
+                                                                        </span>
+
+                                                                    </button>
+
+                                                                    <a
+                                                                        href="/notifications/<%= notification._id %>/view">
+                                                                        View Notification
+                                                                    </a>
+
+                                                                    <% if (currentUser.isMasterAdmin) { %>
+
+                                                                        <button class="delete-btn" type="button"
+                                                                            data-url="/notifications/<%= notification._id %>?_method=DELETE"
+                                                                            data-id="<%= notification._id %>"
+                                                                            data-name="<%= notification.title %>"
+                                                                            data-bs-toggle="modal"
+                                                                            data-bs-target="#deleteModel">
+
+                                                                            Delete Notification
+
+                                                                        </button>
+
+                                                                        <% } %>
+
+
+                                                                </div>
+
+                                                            </div>
+
+                                                            <% }) %>
+
+                                                                <% } %>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Container-fluid ends-->
+                </div>
+
+                <%- include("../partials/footer.ejs") %>

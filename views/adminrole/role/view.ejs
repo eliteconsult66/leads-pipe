@@ -1,0 +1,98 @@
+<%- include("../../partials/boilerplate.ejs") %>
+
+    <%- include("../../partials/header.ejs") %>
+
+        <!-- Page header end-->
+        <div class="page-body-wrapper">
+            <!-- Page sidebar start-->
+            <%- include("../../partials/sidebar.ejs") %>
+                <!-- Page sidebar end-->
+                <div class="page-body">
+                    <div class="container-fluid">
+                        <div class="row page-title">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3>Admin Role</h3>
+                                    <a href="/role/add" class="btn m-1 btn-primary">Add New Role</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Container-fluid starts-->
+                    <%- include("../../partials/flash.ejs") %>
+                        <%- include("../../partials/model.ejs") %>
+                            <div class="container-fluid edit-profile">
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="card-body rolecard-body">
+                                            <div class="table-responsive">
+                                                <table class="display" id="basic-1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Role Name</th>
+                                                            <th>Status</th>
+                                                            <th>Created At</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% if (roles.length===0) { %>
+                                                            <p>No Role Found</p>
+                                                            <% } else { %>
+                                                                <% roles.forEach((role, index)=> { %>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <%= index + 1 %>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= role.name %>
+                                                                        </td>
+                                                                        <td>
+                                                                            <% if(role.status){ %>
+                                                                                <span
+                                                                                    class="badge bg-success">Active</span>
+                                                                                <% } else { %>
+                                                                                    <span
+                                                                                        class="badge bg-danger">Inactive</span>
+                                                                                    <% } %>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= role.createdAt.toLocaleDateString() %>
+                                                                        </td>
+                                                                        <td>
+                                                                            <ul class="action">
+                                                                                <li class="edit"> <a title="Edit"
+                                                                                        href="/role/<%= role._id %>/edit"><i
+                                                                                            class="fa-regular fa-pen-to-square"></i></a>
+                                                                                </li>
+                                                                                <li class="delete">
+                                                                                    <button type="button"
+                                                                                    data-url="/role/<%= role._id %>?_method=DELETE"
+                                                                                        class="delete-btn"
+                                                                                        data-id="<%= role._id %>"
+                                                                                        data-name="<%= role.name %>"
+                                                                                        data-bs-toggle="modal"
+                                                                                        data-bs-target="#deleteModel">
+                                                                                        <i
+                                                                                            class="fa-solid fa-trash"></i>
+                                                                                    </button>
+
+                                                                                </li>
+                                                                            </ul>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <% }) %>
+                                                                        <% } %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Container-fluid ends-->
+                </div>
+
+                <%- include("../../partials/footer.ejs") %>

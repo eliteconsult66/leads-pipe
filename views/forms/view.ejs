@@ -1,0 +1,100 @@
+<%- include("../partials/boilerplate.ejs") %>
+
+    <%- include("../partials/header.ejs") %>
+
+        <!-- Page header end-->
+        <div class="page-body-wrapper">
+            <!-- Page sidebar start-->
+            <%- include("../partials/sidebar.ejs") %>
+                <!-- Page sidebar end-->
+                <div class="page-body">
+                    <div class="container-fluid">
+                        <div class="row page-title">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3>Landing Page Forms</h3>
+                                    <a href="../forms/add" class="btn m-1 btn-primary">Add New Form</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Container-fluid starts-->
+                    <%- include("../partials/flash.ejs") %>
+                        <%- include("../partials/model.ejs") %>
+                            <div class="container-fluid edit-profile">
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="card-body rolecard-body">
+                                            <div class="table-responsive">
+                                                <table class="display" id="basic-1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Name</th>
+                                                            <th>Landing Page</th>
+                                                            <th>Status</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% if (forms.length===0) { %>
+                                                            <% } else { %>
+                                                                <% forms.forEach((form, index)=> { %>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <%= index + 1 %>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= form.name %>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= form.landingPage.name %>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="flip-btn-wrap">
+                                                                                <button
+                                                                                    class="btn btn-sm status-btn <%= form.status === 'Active' ? '' : 'flipped' %>"
+                                                                                    data-url="/forms/<%= form._id %>/toggle-status">
+                                                                                    <span
+                                                                                        class="flip-front">Active</span>
+                                                                                    <span
+                                                                                        class="flip-back">Inactive</span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <ul class="action">
+                                                                                <li class="view"> <a title="Edit"
+                                                                                        href="/forms/<%= form._id %>/edit"><i
+                                                                                            class="fa-regular fa-edit"></i></a>
+                                                                                </li>
+                                                                                <li class="delete">
+                                                                                    <button type="button"
+                                                                                        data-url="/forms/<%= form._id %>?_method=DELETE"
+                                                                                        class="delete-btn"
+                                                                                        data-id="<%= form._id %>"
+                                                                                        data-name="<%= form.name %>"
+                                                                                        data-bs-toggle="modal"
+                                                                                        data-bs-target="#deleteModel">
+                                                                                        <i
+                                                                                            class="fa-solid fa-trash"></i>
+                                                                                    </button>
+
+                                                                                </li>
+                                                                            </ul>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <% }) %>
+                                                                        <% } %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Container-fluid ends-->
+                </div>
+
+                <%- include("../partials/footer.ejs") %>

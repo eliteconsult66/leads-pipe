@@ -1,0 +1,89 @@
+<%- include("../../partials/boilerplate.ejs") %>
+
+    <%- include("../../partials/header.ejs") %>
+
+        <!-- Page header end-->
+        <div class="page-body-wrapper">
+            <!-- Page sidebar start-->
+            <%- include("../../partials/sidebar.ejs") %>
+                <!-- Page sidebar end-->
+                <div class="page-body">
+                    <div class="container-fluid">
+                        <div class="row page-title">
+                            <div class="col-sm-12">
+                                <h3>Add New Employee</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <%- include("../../partials/flash.ejs") %>
+                    <!-- Container-fluid starts-->
+                    <div class="container-fluid edit-profile">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <form class="card" method="POST" action="/employee/add">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Select Role</label>
+                                                    <select name="role" class="form-control">
+                                                        <option value="">Select Role</option>
+
+                                                        <% roles.forEach(role=> { %>
+                                                            <option value="<%= role._id %>">
+                                                                <%= role.name %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Employee Name</label>
+                                                    <input class="form-control" required name="name" type="text"
+                                                        placeholder="Employee Name">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Employee Username</label>
+                                                    <input class="form-control" required name="username" type="text"
+                                                        placeholder="Employee Username">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Employee Email</label>
+                                                    <input class="form-control" required name="email" type="email"
+                                                        placeholder="Employee Email">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Password</label>
+                                                    <input class="form-control" required name="password" type="password"
+                                                        placeholder="Enter Password">
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Select Status</label>
+                                                    <select name="status" class="form-control">
+                                                        <option value="active" selected>Active</option>
+                                                        <option value="inactive">Inactive</option>
+                                                    </select>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                    <div class="card-footer text-end">
+                                        <button class="btn btn-primary" type="submit">Add New Employee</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Container-fluid ends-->
+                </div>
+
+                <%- include("../../partials/footer.ejs") %>

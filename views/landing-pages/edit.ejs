@@ -1,0 +1,73 @@
+<%- include("../partials/boilerplate.ejs") %>
+
+    <%- include("../partials/header.ejs") %>
+
+        <!-- Page header end-->
+        <div class="page-body-wrapper">
+            <!-- Page sidebar start-->
+            <%- include("../partials/sidebar.ejs") %>
+                <!-- Page sidebar end-->
+                <div class="page-body">
+                    <div class="container-fluid">
+                        <div class="row page-title">
+                            <div class="col-sm-12">
+                                <h3> Landing Pages</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <%- include("../partials/flash.ejs") %>
+                        <!-- Container-fluid starts-->
+                        <div class="container-fluid edit-profile">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <form class="card" method="POST" action="/landing-pages/<%= editLandingPage._id %>/edit?_method=PUT">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Name</label>
+                                                        <input class="form-control" name="name" value="<%= editLandingPage.name %>" type="text"
+                                                            placeholder="Enter Lanidng Page Name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Domain</label>
+                                                        <input class="form-control" name="domain" value="<%= editLandingPage.domain %>" type="text"
+                                                            placeholder="Enter Domain Name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Landing Page Url</label>
+                                                        <input class="form-control" name="url" value="<%= editLandingPage.url %>" type="text"
+                                                            placeholder="Enter Landing Page Url">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Fluent Form Id</label>
+                                                        <input class="form-control" name="fluentFormId" value="<%= editLandingPage.fluentFormId %>" type="number"
+                                                            placeholder="Enter Fluent Form Id">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Site Secret Key</label>
+                                                        <input class="form-control" name="siteSecret" disabled value="<%= editLandingPage.siteSecret %>" type="text"
+                                                            placeholder="Enter Site Secret Key">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer text-end">
+                                            <button class="btn btn-primary" type="submit">Update Landing Page</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Container-fluid ends-->
+                </div>
+
+                <%- include("../partials/footer.ejs") %>

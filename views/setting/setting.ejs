@@ -1,0 +1,130 @@
+<%- include("../partials/boilerplate.ejs") %>
+
+    <%- include("../partials/header.ejs") %>
+
+        <!-- Page header end-->
+        <div class="page-body-wrapper">
+            <!-- Page sidebar start-->
+            <%- include("../partials/sidebar.ejs") %>
+                <!-- Page sidebar end-->
+                <div class="page-body">
+                    <div class="container-fluid">
+                        <div class="row page-title">
+                            <div class="col-sm-6">
+                                <h3>settings</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Container-fluid starts-->
+                    <%- include("../partials/flash.ejs") %>
+                        <div class="container-fluid edit-profile">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <form class="card" method="POST" action="/setting">
+                                        <div class="card-header">
+                                            <h4 class="card-title mb-0">Edit Admin & Webiste Settings</h4>
+                                        </div>
+                                        <!-- General Settings -->
+                                        <div class="card-body sett-body">
+                                            <h3 class="setting-head">General Settings</h3>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Website Name</label>
+                                                        <input class="form-control"
+                                                            value="<%= settings ? settings.websitename :  '' %>"
+                                                            name="websitename" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Webiste Link</label>
+                                                        <input class="form-control"
+                                                            value="<%= settings ? settings.websiteurl :  '' %>"
+                                                            name="websiteurl" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Footer Copy Text</label>
+                                                        <input class="form-control"
+                                                            value="<%= settings ? settings.footercopytext :  '' %>"
+                                                            name="footercopytext" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- SMTP Settings -->
+                                        <div class="card-body sett-body">
+                                            <h3 class="setting-head">SMTP Settings</h3>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">From Name</label>
+                                                        <input class="form-control"
+                                                            value="<%= settings ? settings.fromname :  '' %>"
+                                                            name="fromname" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">From Email</label>
+                                                        <input class="form-control"
+                                                            value="<%= settings ? settings.fromemail :  '' %>"
+                                                            name="fromemail" type="email">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">SMTP Driver</label>
+                                                        <input class="form-control"
+                                                            value="<%= settings ? settings.smtpDriver :  '' %>"
+                                                            name="smtpDriver" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">SMTP Username</label>
+                                                        <input class="form-control"
+                                                            value="<%= settings ? settings.smtpusername :  '' %>"
+                                                            name="smtpusername" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">SMTP Host</label>
+                                                        <input class="form-control"
+                                                            value="<%= settings ? settings.smtpHost :  '' %>"
+                                                            name="smtpHost" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">SMTP Port</label>
+                                                        <input class="form-control"
+                                                            value="<%= settings ? settings.smtpPort :  '' %>"
+                                                            name="smtpPort" type="number">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">SMTP Password</label>
+                                                        <input class="form-control"
+                                                            value="<%= settings ? settings.smtppassword :  '' %>"
+                                                            name="smtppassword" type="text">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer text-end">
+                                            <button class="btn btn-primary" type="submit">Update Setting</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Container-fluid ends-->
+                </div>
+
+                <%- include("../partials/footer.ejs") %>
