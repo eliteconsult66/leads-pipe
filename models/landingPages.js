@@ -15,10 +15,10 @@ const landingPagesSchema = new Schema({
     url: {
         type: String
     },
-    fluentFormId: {
-        type: Number,
-        required: true
-    },
+    // fluentFormId: {
+    //     type: Number,
+    //     required: true
+    // },
     siteSecret: {
         type: String
     },
