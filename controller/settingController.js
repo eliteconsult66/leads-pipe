@@ -2,7 +2,7 @@ const Setting = require('../models/setting.js');
 
 
 //WrapAsync
-const WrapAsync = require('../utils/WrapAsync');
+const WrapAsync = require('../utils/wrapAsync');
 
 module.exports.rendersettingPage = WrapAsync(async (req, res) => {
     const settings = await Setting.findOne();
