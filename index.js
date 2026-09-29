@@ -17,7 +17,7 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 
 // MongoDB session store
-const MongoStore = require('connect-mongo');
+const { MongoStore } = require('connect-mongo');
 
 // Flash messages
 const flash = require('connect-flash');
