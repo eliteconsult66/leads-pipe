@@ -19,7 +19,7 @@ module.exports.renderLandingPageAddNewView =WrapAsync(async (req, res) => {
             name,
             domain,
             url,
-            fluentFormId
+            // fluentFormId
         } = req.body;
 
         const siteSecret = crypto.randomBytes(32).toString('hex');
@@ -28,7 +28,7 @@ module.exports.renderLandingPageAddNewView =WrapAsync(async (req, res) => {
             name,
             domain,
             url,
-            fluentFormId,
+            // fluentFormId,
             siteSecret
         });
 
@@ -63,7 +63,7 @@ module.exports.renderLandingPageUpdateView = WrapAsync(async (req, res) => {
     udtLandingPage.name = req.body.name?.trim();
     udtLandingPage.domain = req.body.domain?.trim();
     udtLandingPage.url = req.body.url?.trim();
-    udtLandingPage.fluentFormId = req.body.fluentFormId?.trim();
+    // udtLandingPage.fluentFormId = req.body.fluentFormId?.trim();
     udtLandingPage.siteSecret = req.body.siteSecret?.trim();
 
     await udtLandingPage.save();
