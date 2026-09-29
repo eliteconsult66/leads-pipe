@@ -1,5 +1,5 @@
 const User = require('../models/user');
-const WrapAsync = require('../utils/wrapAsync');
+const WrapAsync = require('../utils/WrapAsync');
 
 // Admin Login Dashboard route
 module.exports.renderAdminLogin = WrapAsync(async (req, res) => {
