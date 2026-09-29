@@ -50,7 +50,7 @@
                                                                             <%= employee.name %>
                                                                         </td>
                                                                         <td>
-                                                                            <%= employee.role.name %>
+                                                                            <%= employee && employee.role ? employee.role.name : 'N/A' %>
                                                                         </td>
                                                                         <td>
                                                                             <div class="flip-btn-wrap">
