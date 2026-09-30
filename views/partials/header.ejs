@@ -28,7 +28,7 @@
             <li class="profile-dropdown custom-dropdown">
               <div class="d-flex align-items-center"><img src="/adminassets/images/profile.png" alt="">
                 <div class="flex-grow-1">
-                  <h5>Azeem Sarwar</h5><span>Admin</span>
+                     <h5> <%= currentUser.name %> </h5><span><%= currentUser?.isMasterAdmin ? "Admin" : "Employee"  %></span>
                 </div>
               </div>
               <div class="custom-menu overflow-hidden">
