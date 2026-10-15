@@ -34,4 +34,16 @@ const enquirySchema = new Schema({
     timestamps: true
 });
 
+enquirySchema.index(
+    {
+        landingPageId: 1,
+        fluentFormId: 1,
+        fluentSubmissionId: 1
+    },
+    {
+        unique: true,
+        name: 'unique_site_form_submission'
+    }
+);
+
 module.exports = mongoose.model('Enquiry', enquirySchema);
